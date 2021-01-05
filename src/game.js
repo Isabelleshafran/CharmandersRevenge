@@ -11,9 +11,8 @@ class CharmandersRevenge {
 
   registerEvents() {
     this.boundClickHandler = this.click.bind(this);
-    this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
-    // this.ctx.canvas.addEventListener("keydown", this.boundClickHandler);
 
+    this.ctx.canvas.addEventListener("keydown", this.boundClickHandler);
   }
 
   restart() {
@@ -42,12 +41,10 @@ class CharmandersRevenge {
     if (!this.running) {
       this.play();
     }
-
-    this.charmander.jump();
-
-    // if(e.keyCode === 38) {
-    //     this.charmander.jump();
-    // }
+    
+    if(e.keyCode === 38) {
+        this.charmander.jump();
+    }
   }
 }
 

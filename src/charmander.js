@@ -1,6 +1,6 @@
 const CONSTANTS = {
-  GRAVITY: 1,
-  JUMP_SPEED: 1,
+  GRAVITY: 2,
+  JUMP_SPEED: 50,
 //   TERMINAL_VEL: 12,
   CHAR_WIDTH: 100,
   CHAR_HEIGHT: 100,
@@ -20,6 +20,7 @@ class Charmander {
   drawChar(ctx) {
     let char = new Image();
     char.src = '../images/charmander.png'
+
     ctx.drawImage(
       char,
       this.x,
@@ -27,6 +28,16 @@ class Charmander {
       CONSTANTS.CHAR_WIDTH,
       CONSTANTS.CHAR_HEIGHT
     );
+
+    char.onload = () => {
+        ctx.drawImage(
+         char,
+         this.x,
+         this.y,
+         CONSTANTS.CHAR_WIDTH,
+         CONSTANTS.CHAR_HEIGHT
+       )
+    }
 
   }
 
@@ -37,16 +48,15 @@ class Charmander {
 
   moveChar(){
 
-  
-    // this.y_v += CONSTANTS.GRAVITY
-    this.y = this.vel
-    this.vel += 1;
+    this.y += this.vel
+    this.vel = CONSTANTS.GRAVITY
 
+    if(this.y === this.dimensions.height - 200) {
+        this.vel = 0
+    }
   }
 
   jump(){
-    //   this.y_vel = -10
-
 
     this.vel = -1 * CONSTANTS.JUMP_SPEED;
   }

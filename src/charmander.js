@@ -14,15 +14,11 @@ class Charmander {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
-    // this.level = level;
-
-
-    // console.log(this.level)
-
     this.dashing = false 
 
-    this.x = 10;
-    this.y = 70;
+    this.x = 50;
+    this.y = 185;
+    // this.y = 320
     this.vel = 0;
   }
 
@@ -37,25 +33,20 @@ class Charmander {
 
   moveChar(level) {
 
+    // console.log(this.y)
+
     // y axis 
     this.y += this.vel;
     this.vel = CONSTANTS.GRAVITY;
 
-    // if (this.y === 200) {
-    //   this.vel = 0;
-    // }
-
-    // console.log(level)
-
     level.grass.forEach(grass => {
       if(this.x > grass.left && this.x < grass.right) {
+        // console.log(grass.bottom)
              if (this.y > (grass.bottom - 50)) {
                this.vel = 0
              }
         }
     })
-
-    // console.log(this.level)
 
 
     // x axis 
@@ -116,21 +107,24 @@ class Charmander {
   }
 
   bounds() {
+    // console.log(this.x )
+    // x is 50 // right is 150
+
+    // y starts at 185
+    // console.log(this.y)
     return {
       left: this.x,
       right: this.x + CONSTANTS.CHAR_WIDTH,
       top: this.y,
-      bottom: this.y + CONSTANTS.CHAR_HEIGHT,
+      bottom: this.y,
+
+      // bottom: this.y + CONSTANTS.CHAR_HEIGHT,
     };
   }
 
   outOfBounds() {
-    // const aboveTheTop = this.y < 0;
-    // const belowTheBottom =
-    //   this.y + CONSTANTS.CHAR_HEIGHT > this.dimensions.height;
-    // return aboveTheTop || belowTheBottom;
-
-    // change to be at the floor 
+    const belowTheBottom = this.y > 350
+    return belowTheBottom 
   }
 }
 

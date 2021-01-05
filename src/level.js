@@ -1,8 +1,8 @@
 const CONSTANTS = {
     GRASS_SPEED: 3,
-    GRASS_WIDTH: 500, 
+    GRASS_WIDTH: 450, 
     GRASS_HEIGHT: 100,
-    GRASS_SPACING: 610
+    GRASS_SPACING: 700
 }
 
 class Level {

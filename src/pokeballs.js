@@ -12,7 +12,7 @@ class PokeBall {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
-    const firstBallDistance = 400;
+    const firstBallDistance = 800;
 
     this.balls = [
       this.randomBall(firstBallDistance),
@@ -70,28 +70,18 @@ class PokeBall {
 
 
   collidesWith(char) {
-    //this function returns true if the the rectangles overlap
-    const _overlap = (rect1, rect2) => {
-      //check that they don't overlap in the x axis
-      if (rect1.left > rect2.right || rect1.right < rect2.left) {
-        return false;
-      }
-      //check that they don't overlap in the y axis
-      if (rect1.top > rect2.bottom || rect1.bottom < rect2.top) {
-        return false;
-      }
-      return true;
-    };
-
     let collision = false;
+
     this.eachBall((ball) => {
-      if (
-   
-        _overlap(ball, char)
-      ) {
-        collision = true;
+      // console.log(ball.left, char.right)
+      // console.log(ball.top) 95
+      console.log(char.bottom)
+      if((ball.left === (char.right + 1)) && (ball.top === char.bottom)) {
+        console.log(ball, char)
+        collision = true
       }
     });
+
     return collision;
   }
 }

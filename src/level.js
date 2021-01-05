@@ -50,14 +50,18 @@ class Level {
 
   moveGrass(){
       this.eachGrass(function(grass) {
-          grass.left -= 2, 
-          grass.right -= 2
+        grass.left -= 3, 
+        grass.right -= 3
       })
-
-  
-
+      
+    
+      
+      // to make game go faster find a way to -= 2 more over time 
+      
       if(this.grass[0].right <= 0) {
- 
+        
+        
+        // console.log(count)
           this.grass.shift();
           const newG = this.grass[1].left + CONSTANTS.GRASS_SPACING;
           this.grass.push(this.randomGrass(newG))

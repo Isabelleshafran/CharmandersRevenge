@@ -1,3 +1,6 @@
+
+
+
 body {
     /* background-image: url('../images/background.jpg'); */
     background-image: url('../images/background.png');
@@ -6,8 +9,20 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: 100px;
-    font-family: 'pokemon-font', monospace; 
     color: white;
 
+    font-family: 'sigmar one';
+
+/* 
+     font-size: 10px;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  font-family: 'pokemon-font', monospace; */
+
+
+}
+
+h1 {
+    font-size: 40px;
 }
 

@@ -21,14 +21,19 @@ class CharmandersRevenge {
 
     this.level = new Level(this.dimensions);
     this.charmander = new Charmander(this.dimensions);
-    this.pokeballs = new PokeBall(this.dimensions)
+    this.pokeballs = new PokeBall(this.dimensions);
     this.animate();
   }
 
   animate() {
-      this.level.animate(this.ctx);
-      this.charmander.animate(this.ctx);
-      this.pokeballs.animate(this.ctx)
+    this.level.animate(this.ctx);
+    this.charmander.animate(this.ctx);
+    this.pokeballs.animate(this.ctx);
+
+    if(this.gameOver()) {
+      alert('GAME OVER');
+      this.restart();
+    }
 
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
@@ -45,9 +50,16 @@ class CharmandersRevenge {
       this.play();
     }
 
-    if(e.keyCode === 38) {
-        this.charmander.jump();
+    if (e.keyCode === 38) {
+      this.charmander.jump();
     }
+  }
+
+  gameOver() {
+    return (
+      this.pokeballs.collidesWith(this.charmander.bounds()) 
+      // this.charmander.outOfBounds(this.height)
+    );
   }
 }
 

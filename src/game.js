@@ -19,8 +19,8 @@ class CharmandersRevenge {
   restart() {
     this.running = false;
 
-    this.charmander = new Charmander(this.dimensions);
     this.level = new Level(this.dimensions);
+    this.charmander = new Charmander(this.dimensions);
     this.pokeballs = new PokeBall(this.dimensions)
     this.animate();
   }

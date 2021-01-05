@@ -18,6 +18,7 @@ class Charmander {
   }
 
   drawChar(ctx) {
+
     let char = new Image();
     char.src = '../images/charmander.png'
 
@@ -51,7 +52,8 @@ class Charmander {
     this.y += this.vel
     this.vel = CONSTANTS.GRAVITY
 
-    if(this.y === this.dimensions.height - 200) {
+    // need to check if this.y ==== the ground obj height 
+    if(this.y === 200) {
         this.vel = 0
     }
   }

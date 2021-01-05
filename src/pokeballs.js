@@ -3,7 +3,7 @@ const CONSTANTS = {
   BALL_SPEED: 2,
   BALL_WIDTH: 50,
   EDGE_BUFFER: 50,
-  PIPE_SPACING: 220,
+  BALL_SPACING: 400,
   WARM_UP_SECONDS: 1,
 };
 
@@ -11,11 +11,12 @@ class PokeBall {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
-    const firstBallDistance = this.dimensions.width;
+    const firstBallDistance = 500;
 
     this.balls = [
       this.randomBall(firstBallDistance),
-      this.randomBall(firstBallDistance + 220),
+      this.randomBall(firstBallDistance + CONSTANTS.BALL_SPACING),
+      this.randomBall(firstBallDistance + (CONSTANTS.BALL_SPACING * 2)),
     ];
   }
 
@@ -39,12 +40,11 @@ class PokeBall {
           ball.right -= 2;
       })
 
-    //   console.log(this.balls[0].left)
-
-      if(this.balls[0].left === 2) {
-          this.balls.shift();
-          const newX = this.balls[1].left + 220;
-          this.balls.push(this.randomBall(newX))
+  
+      if (this.balls[0].right <= 0) {
+        this.balls.shift();
+        const newB = this.balls[1].left + CONSTANTS.BALL_SPACING;
+        this.balls.push(this.randomBall(newB));
       }
   }
 
@@ -53,10 +53,10 @@ class PokeBall {
       let pokeball = new Image();
       pokeball.src = "../images/pokeball.png";
 
-      ctx.drawImage(pokeball, ball.left, ball.right, 35, 35);
+      ctx.drawImage(pokeball, ball.left, 175, 95, 95);
 
       pokeball.onload = () => {
-        ctx.drawImage(pokeball, ball.left, ball.right, 35, 35);
+        ctx.drawImage(pokeball, ball.left, 175, 95, 95);
       };
     });
   }

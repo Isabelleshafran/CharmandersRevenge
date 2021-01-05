@@ -1,3 +1,8 @@
+const CONSTANTS = {
+    GRASS_WIDTH: 500, 
+    GRASS_HEIGHT: 100,
+    GRASS_SPACING: 575
+}
 
 class Level {
   constructor(dimensions) {
@@ -8,10 +13,10 @@ class Level {
     // const firstBallDistance = this.dimensions.width 
 
     this.grass = [
-        this.randomGrass(grassDistance), 
-        this.randomGrass(grassDistance + 100), 
-        this.randomGrass(grassDistance + 200)
-    ]
+      this.randomGrass(grassDistance),
+      this.randomGrass(grassDistance + CONSTANTS.GRASS_SPACING),
+      this.randomGrass(grassDistance + (CONSTANTS.GRASS_SPACING * 2)),
+    ];
 
   }
 
@@ -35,8 +40,10 @@ class Level {
 
     const grass = {
         left: x, 
-        right: 200 + x
+        right: CONSTANTS.GRASS_WIDTH + x
     }
+    // console.log(grass.left, grass.right)
+
 
     return grass
   }
@@ -47,9 +54,12 @@ class Level {
           grass.right -= 2
       })
 
-      if(this.grass[0].left <= 0) {
+  
+
+      if(this.grass[0].right <= 0) {
+ 
           this.grass.shift();
-          const newG = this.grass[1].left + 220;
+          const newG = this.grass[1].left + CONSTANTS.GRASS_SPACING;
           this.grass.push(this.randomGrass(newG))
       }
   }
@@ -60,10 +70,22 @@ class Level {
           let ground = new Image();
           ground.src = "../images/grass.png";
 
-          ctx.drawImage(ground, grass.left, grass.right, 500, 100);
 
-          ground.onload = () => {
-            ctx.drawImage(ground, 0, this.dimensions.height - 100, 400, 200);
+            ctx.drawImage(ground, grass.left, 250, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
+
+
+            ground.onload = () => {
+  
+     
+            ctx.drawImage(
+              ground,
+              grass.left,
+              250,
+              CONSTANTS.GRASS_WIDTH,
+              CONSTANTS.GRASS_HEIGHT
+            );
+
+
           };
         });
   }

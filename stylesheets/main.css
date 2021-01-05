@@ -1,12 +1,13 @@
 body {
     /* background-image: url('../images/background.jpg'); */
-    /* background-image: url('../images/background.jpg'); */
+    background-image: url('../images/background.png');
     margin: 0px;
     display: flex; 
     flex-direction: column;
     align-items: center;
     margin-top: 100px;
-    font-family: 'pokemon-font', monospace
+    font-family: 'pokemon-font', monospace; 
+    color: white;
 
 }
 

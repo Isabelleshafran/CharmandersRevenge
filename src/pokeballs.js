@@ -2,6 +2,7 @@
 const CONSTANTS = {
   BALL_SPEED: 2,
   BALL_WIDTH: 50,
+  BALL_HEIGHT: 95,
   EDGE_BUFFER: 50,
   BALL_SPACING: 400,
   WARM_UP_SECONDS: 1,
@@ -11,7 +12,7 @@ class PokeBall {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
-    const firstBallDistance = 500;
+    const firstBallDistance = 400;
 
     this.balls = [
       this.randomBall(firstBallDistance),
@@ -28,7 +29,9 @@ class PokeBall {
   randomBall(x) {
     const ball = {
       left: x,
-      right: 35 + x,
+      right: 95 + x,
+      top: CONSTANTS.BALL_HEIGHT,
+      bottom: CONSTANTS.BALL_HEIGHT
     };
 
     return ball;
@@ -80,7 +83,8 @@ class PokeBall {
 
     let collision = false;
     this.eachBall((ball) => {
-      if (_overlap(ball, char)) {collision = true}
+      // console.log(ball, char)
+      if (_overlap(char, ball)) {collision = true}
     })
 
     return collision;
@@ -88,3 +92,7 @@ class PokeBall {
 }
 
 export default PokeBall;
+
+
+// {left: 50, right: 125, top: 186, bottom: 196}
+// char bounds 

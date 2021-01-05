@@ -1,7 +1,7 @@
 const CONSTANTS = {
     GRASS_WIDTH: 500, 
     GRASS_HEIGHT: 100,
-    GRASS_SPACING: 575
+    GRASS_SPACING: 610
 }
 
 class Level {
@@ -39,9 +39,10 @@ class Level {
   randomGrass(x){
 
     const grass = {
-        left: x, 
-        right: CONSTANTS.GRASS_WIDTH + x
-    }
+      left: x,
+      right: CONSTANTS.GRASS_WIDTH + x,
+      top: Math.floor(Math.random() * 60) + 200,
+    };
     // console.log(grass.left, grass.right)
 
 
@@ -51,7 +52,8 @@ class Level {
   moveGrass(){
       this.eachGrass(function(grass) {
         grass.left -= 3, 
-        grass.right -= 3
+        grass.right -= 3, 
+        grass.top
       })
       
     
@@ -74,8 +76,10 @@ class Level {
           let ground = new Image();
           ground.src = "../images/grass.png";
 
+          // let height = 
 
-            ctx.drawImage(ground, grass.left, 250, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
+
+            ctx.drawImage(ground, grass.left, grass.top, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
 
 
             ground.onload = () => {
@@ -84,7 +88,7 @@ class Level {
             ctx.drawImage(
               ground,
               grass.left,
-              250,
+              grass.top,
               CONSTANTS.GRASS_WIDTH,
               CONSTANTS.GRASS_HEIGHT
             );

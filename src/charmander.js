@@ -13,7 +13,7 @@ class Charmander {
     this.dimensions = dimensions;
 
     this.x = 50;
-    this.y = this.dimensions.height - 200;
+    this.y = 200
     this.vel = 0;
   }
 
@@ -28,6 +28,7 @@ class Charmander {
     this.vel = CONSTANTS.GRAVITY;
 
     // need to check if this.y ==== the ground obj height
+
     if (this.y === 200) {
       this.vel = 0;
     }
@@ -67,11 +68,13 @@ class Charmander {
     // console.log(this.y)
     return {
       left: this.x,
+      // right: this.x + 75,
       right: this.x + CONSTANTS.CHAR_WIDTH,
       
       top: this.y,
-      // bottom: this.y + CONSTANTS.CHAR_HEIGHT,
+      // bottom: this.y + 10
       bottom: this.y + CONSTANTS.CHAR_HEIGHT,
+      // bottom: this.y + CONSTANTS.CHAR_HEIGHT,
     
     };
     

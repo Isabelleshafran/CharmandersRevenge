@@ -31,8 +31,8 @@ class CharmandersRevenge {
     this.pokeballs.animate(this.ctx);
 
     if(this.gameOver()) {
-      alert('GAME OVER');
-      this.restart();
+      // alert('GAME OVER');
+      // this.restart();
     }
 
     if (this.running) {

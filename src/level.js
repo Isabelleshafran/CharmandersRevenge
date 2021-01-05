@@ -1,4 +1,5 @@
 const CONSTANTS = {
+    GRASS_SPEED: 3,
     GRASS_WIDTH: 500, 
     GRASS_HEIGHT: 100,
     GRASS_SPACING: 610
@@ -51,8 +52,8 @@ class Level {
 
   moveGrass(){
       this.eachGrass(function(grass) {
-        grass.left -= 3, 
-        grass.right -= 3, 
+        grass.left -= CONSTANTS.GRASS_SPEED, 
+        grass.right -= CONSTANTS.GRASS_SPEED, 
         grass.top
       })
       

@@ -39,8 +39,8 @@ class PokeBall {
 
   moveBalls() {
     this.eachBall(function (ball) {
-      ball.left -= 2;
-      ball.right -= 2;
+      ball.left -= CONSTANTS.BALL_SPEED;
+      ball.right -= CONSTANTS.BALL_SPEED;
     });
 
     if (this.balls[0].right <= 0) {
@@ -68,23 +68,22 @@ class PokeBall {
   }
 
   collidesWith(char) {
-    const _overlap = (rect1, rect2) => {
-      if (rect1.left > rect2.right || rect1.right < rect2.left) {
-        // console.log(rect1.left)
-        return false;
-      }
+    const _overlap = (ball, char) => {
+        if (ball.left !== char.right) {
+          return false;
+        }
 
-      if (rect1.top > rect2.bottom || rect1.bottom < rect2.top) {
-        return false;
-      }
+        // if(ball.top !== char.bottom) {
+        //   return false
+        // }
 
       return true;
     };
 
     let collision = false;
     this.eachBall((ball) => {
-      // console.log(ball, char)
-      if (_overlap(char, ball)) {collision = true}
+
+      if (_overlap(ball, char)) {collision = true}
     })
 
     return collision;

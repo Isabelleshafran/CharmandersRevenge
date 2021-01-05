@@ -53,6 +53,10 @@ class CharmandersRevenge {
     if (e.keyCode === 38) {
       this.charmander.jump();
     }
+
+    if(e.keyCode === 39) {
+      this.charmander.dash();
+    }
   }
 
   gameOver() {

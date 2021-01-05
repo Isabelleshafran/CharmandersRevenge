@@ -1,28 +1,25 @@
-const CONSTANTS = {
-  BALL_SPEED: 2,
-  BALL_WIDTH: 50,
-  EDGE_BUFFER: 50,
-  PIPE_SPACING: 220,
-  WARM_UP_SECONDS: 1
-};
 
 class Level {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
+    const grassDistance = 0
+
     // const firstBallDistance = this.dimensions.width 
 
-    // this.balls = [
-    //     this.randomBall(firstBallDistance), 
-    //     this.randomBall(firstBallDistance + 220)
-    // ]
+    this.grass = [
+        this.randomGrass(grassDistance), 
+        this.randomGrass(grassDistance + 100), 
+        this.randomGrass(grassDistance + 200)
+    ]
 
   }
 
   animate(ctx) {
     this.drawBackground(ctx);
-    // this.moveBalls()
-    // this.drawBalls(ctx)
+    this.moveGrass();
+    this.drawGrass(ctx)
+
   }
 
   drawBackground(ctx) {
@@ -34,45 +31,46 @@ class Level {
     };
   }
 
-  randomBall(x){
-  
-    //   const ball = {
-    //       left: x, 
-    //       right: 35 + x
-    //   }
+  randomGrass(x){
 
-    //   return ball;
+    const grass = {
+        left: x, 
+        right: 200 + x
+    }
+
+    return grass
   }
 
-  moveBalls(){
-    //   this.eachBall(function(ball) {
-    //       ball.left -= 2; 
-    //       ball.right -= 2;
-    //   })
+  moveGrass(){
+      this.eachGrass(function(grass) {
+          grass.left -= 2, 
+          grass.right -= 2
+      })
 
-    //   if(this.balls[0].left <= 0) {
-    //       this.balls.shift();
-    //       const newX = this.balls[1].left + 220;
-    //       this.balls.push(this.randomBall(newX))
-    //   }
+      if(this.grass[0].left <= 0) {
+          this.grass.shift();
+          const newG = this.grass[1].left + 220;
+          this.grass.push(this.randomGrass(newG))
+      }
   }
 
-  drawBalls(ctx){
-    //   this.eachBall(function(ball) {
-    //         let pokeball = new Image();
-    //         pokeball.src = "../images/pokeball.png";
-    
-    //         ctx.drawImage(pokeball, ball.left, ball.right, 35, 35
-    //         );
-    
-    //         pokeball.onload = () => {
-    //         ctx.drawImage(pokeball, ball.left, ball.right, 35, 35);
-    //         };
-    //   })
+  drawGrass(ctx){
+
+        this.eachGrass(function (grass) {
+          let ground = new Image();
+          ground.src = "../images/grass.png";
+
+          ctx.drawImage(ground, grass.left, grass.right, 500, 100);
+
+          ground.onload = () => {
+            ctx.drawImage(ground, 0, this.dimensions.height - 100, 400, 200);
+          };
+        });
   }
 
-eachBall(callback) {
-    // this.balls.forEach(callback.bind(this));
+
+eachGrass(callback) {
+    this.grass.forEach(callback.bind(this));
   }
 
 }

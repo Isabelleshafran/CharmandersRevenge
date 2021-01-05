@@ -38,7 +38,10 @@ class PokeBall {
           ball.left -= 2;
           ball.right -= 2;
       })
-      if(this.balls[0].left <= 0) {
+
+    //   console.log(this.balls[0].left)
+
+      if(this.balls[0].left === 2) {
           this.balls.shift();
           const newX = this.balls[1].left + 220;
           this.balls.push(this.randomBall(newX))

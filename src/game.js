@@ -1,5 +1,6 @@
 import Level from "./level";
 import Charmander from './charmander'
+import PokeBall from './pokeballs'
 
 class CharmandersRevenge {
   constructor(canvas) {
@@ -20,12 +21,14 @@ class CharmandersRevenge {
 
     this.charmander = new Charmander(this.dimensions);
     this.level = new Level(this.dimensions);
+    this.pokeballs = new PokeBall(this.dimensions)
     this.animate();
   }
 
   animate() {
-    this.level.animate(this.ctx);
-    this.charmander.animate(this.ctx);
+      this.level.animate(this.ctx);
+      this.charmander.animate(this.ctx);
+      this.pokeballs.animate(this.ctx)
 
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
@@ -41,7 +44,7 @@ class CharmandersRevenge {
     if (!this.running) {
       this.play();
     }
-    
+
     if(e.keyCode === 38) {
         this.charmander.jump();
     }

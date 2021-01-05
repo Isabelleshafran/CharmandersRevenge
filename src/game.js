@@ -26,8 +26,9 @@ class CharmandersRevenge {
   }
 
   animate() {
+    this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
     this.level.animate(this.ctx);
-    this.charmander.animate(this.ctx);
+    this.charmander.animate(this.ctx, this.level);
     this.pokeballs.animate(this.ctx);
 
     if(this.gameOver()) {
@@ -61,8 +62,8 @@ class CharmandersRevenge {
 
   gameOver() {
     return (
-      this.pokeballs.collidesWith(this.charmander.bounds()) 
-      // this.charmander.outOfBounds(this.height)
+      this.pokeballs.collidesWith(this.charmander.bounds()) ||
+      this.charmander.outOfBounds(this.height)  
     );
   }
 }

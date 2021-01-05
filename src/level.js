@@ -11,14 +11,12 @@ class Level {
 
     const grassDistance = 0
 
-    // const firstBallDistance = this.dimensions.width 
 
     this.grass = [
       this.randomGrass(grassDistance),
       this.randomGrass(grassDistance + CONSTANTS.GRASS_SPACING),
       this.randomGrass(grassDistance + (CONSTANTS.GRASS_SPACING * 2)),
     ];
-
   }
 
   animate(ctx) {
@@ -42,7 +40,7 @@ class Level {
     const grass = {
       left: x,
       right: CONSTANTS.GRASS_WIDTH + x,
-      top: Math.floor(Math.random() * 60) + 200,
+      bottom: Math.floor(Math.random() * 60) + 200,
     };
     // console.log(grass.left, grass.right)
 
@@ -54,7 +52,7 @@ class Level {
       this.eachGrass(function(grass) {
         grass.left -= CONSTANTS.GRASS_SPEED, 
         grass.right -= CONSTANTS.GRASS_SPEED, 
-        grass.top
+        grass.bottom
       })
       
     
@@ -68,6 +66,7 @@ class Level {
           this.grass.shift();
           const newG = this.grass[1].left + CONSTANTS.GRASS_SPACING;
           this.grass.push(this.randomGrass(newG))
+      
       }
   }
 
@@ -80,7 +79,7 @@ class Level {
           // let height = 
 
 
-            ctx.drawImage(ground, grass.left, grass.top, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
+            ctx.drawImage(ground, grass.left, grass.bottom, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
 
 
             ground.onload = () => {
@@ -89,7 +88,7 @@ class Level {
             ctx.drawImage(
               ground,
               grass.left,
-              grass.top,
+              grass.bottom,
               CONSTANTS.GRASS_WIDTH,
               CONSTANTS.GRASS_HEIGHT
             );

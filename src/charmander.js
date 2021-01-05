@@ -1,5 +1,5 @@
 const CONSTANTS = {
-  GRAVITY: 2,
+  GRAVITY: 3,
   JUMP_SPEED: 50,
   DASH_SPEED: 200,
   NO_SPEED: 50,
@@ -14,37 +14,56 @@ class Charmander {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
+    // this.level = level;
+
+
+    // console.log(this.level)
+
     this.dashing = false 
 
-    this.x = 50;
-    this.y = 200
+    this.x = 10;
+    this.y = 70;
     this.vel = 0;
   }
 
   jump() {
     this.vel = -1 * CONSTANTS.JUMP_SPEED;
-
   }
 
   dash() {
-    // alert('dash')
     this.dashing = true;
     this.x = CONSTANTS.DASH_SPEED
-
-    setTimeout(() => this.dashing = false, 1000);
-
   }
 
-  moveChar() {
+  moveChar(level) {
+
+    // y axis 
     this.y += this.vel;
     this.vel = CONSTANTS.GRAVITY;
-    if (this.y === 200) {
-      this.vel = 0;
-    }
 
+    // if (this.y === 200) {
+    //   this.vel = 0;
+    // }
+
+    // console.log(level)
+
+    level.grass.forEach(grass => {
+      if(this.x > grass.left && this.x < grass.right) {
+             if (this.y > (grass.bottom - 50)) {
+               this.vel = 0
+             }
+        }
+    })
+
+    // console.log(this.level)
+
+
+    // x axis 
     if(this.x > 50){
-      this.x -= 10
-    } 
+      this.x -= 8
+    } else {
+      this.dashing = false;
+    }
     
   }
 
@@ -60,6 +79,7 @@ class Charmander {
       CONSTANTS.CHAR_HEIGHT
     );
 
+
     char.onload = () => {
       ctx.drawImage(
         char,
@@ -68,6 +88,8 @@ class Charmander {
         CONSTANTS.CHAR_WIDTH,
         CONSTANTS.CHAR_HEIGHT
       );
+
+      // ctx.clearRect();
     };
   }
 
@@ -85,13 +107,12 @@ class Charmander {
 
   }
 
-  animate(ctx) {
-    this.moveChar();
+  animate(ctx, level) {
+    this.moveChar(level);
     this.drawChar(ctx);
     if(this.dashing === true) {
       this.drawFlames(ctx)
     }
-    // this.drawFlames(ctx)
   }
 
   bounds() {
@@ -104,10 +125,12 @@ class Charmander {
   }
 
   outOfBounds() {
-    const aboveTheTop = this.y < 0;
-    const belowTheBottom =
-      this.y + CONSTANTS.CHAR_HEIGHT > this.dimensions.height;
-    return aboveTheTop || belowTheBottom;
+    // const aboveTheTop = this.y < 0;
+    // const belowTheBottom =
+    //   this.y + CONSTANTS.CHAR_HEIGHT > this.dimensions.height;
+    // return aboveTheTop || belowTheBottom;
+
+    // change to be at the floor 
   }
 }
 

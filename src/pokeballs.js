@@ -1,10 +1,10 @@
 
 const CONSTANTS = {
-  BALL_SPEED: 2,
-  BALL_WIDTH: 50,
+  BALL_SPEED: 3,
+  BALL_WIDTH: 95,
   BALL_HEIGHT: 95,
   EDGE_BUFFER: 50,
-  BALL_SPACING: 400,
+  BALL_SPACING: 1000,
   WARM_UP_SECONDS: 1,
 };
 
@@ -31,7 +31,7 @@ class PokeBall {
       left: x,
       right: 95 + x,
       top: CONSTANTS.BALL_HEIGHT,
-      bottom: CONSTANTS.BALL_HEIGHT
+      bottom: CONSTANTS.BALL_HEIGHT,
     };
 
     return ball;
@@ -57,6 +57,7 @@ class PokeBall {
 
       ctx.drawImage(pokeball, ball.left, 175, 95, 95);
 
+
       pokeball.onload = () => {
         ctx.drawImage(pokeball, ball.left, 175, 95, 95);
       };
@@ -67,25 +68,30 @@ class PokeBall {
     this.balls.forEach(callback.bind(this));
   }
 
+
   collidesWith(char) {
-    const _overlap = (ball, char) => {
-        if (ball.left !== char.right) {
-          return false;
-        }
-
-        // if(ball.top !== char.bottom) {
-        //   return false
-        // }
-
+    //this function returns true if the the rectangles overlap
+    const _overlap = (rect1, rect2) => {
+      //check that they don't overlap in the x axis
+      if (rect1.left > rect2.right || rect1.right < rect2.left) {
+        return false;
+      }
+      //check that they don't overlap in the y axis
+      if (rect1.top > rect2.bottom || rect1.bottom < rect2.top) {
+        return false;
+      }
       return true;
     };
 
     let collision = false;
     this.eachBall((ball) => {
-
-      if (_overlap(ball, char)) {collision = true}
-    })
-
+      if (
+   
+        _overlap(ball, char)
+      ) {
+        collision = true;
+      }
+    });
     return collision;
   }
 }

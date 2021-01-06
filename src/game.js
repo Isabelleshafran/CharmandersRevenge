@@ -20,29 +20,33 @@ class CharmandersRevenge {
     this.running = false;
     this.score = 0;
     this.level = new Level(this.dimensions);
-    this.charmander = new Charmander(this.dimensions);
     this.pokeballs = new PokeBall(this.dimensions);
+    this.charmander = new Charmander(this.dimensions);
     this.animate();
   }
 
   animate() {
-    this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
+    this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
     this.level.animate(this.ctx, this.score);
-    this.charmander.animate(this.ctx, this.level);
     this.pokeballs.animate(this.ctx, this.charmander, this.score);
+    this.charmander.animate(this.ctx, this.level);
 
-    if(this.gameOver()) {
-      
-      this.charmander.flash()
-      setTimeout(() => (this.restart(), alert('GAME OVER')), 100)
+    // console.log(this.level.speed);
+
+    if (this.gameOver()) {
+      this.charmander.flash();
+      this.level.speed = 0;
+      this.pokeballs.speed = 0;
+      this.charmander.vel = 0;
+      this.charmander.currentFrame = 0;
+
+      this.drawGameOver()
+
     }
 
-
-
     this.pokeballs.passedBall(this.charmander.bounds(), () => {
-      this.score += 1
-      // console.log(this.score)
-    })
+      this.score += 1;
+    });
 
     this.drawScore();
 
@@ -65,7 +69,7 @@ class CharmandersRevenge {
       this.charmander.jump();
     }
 
-    if(e.keyCode === 39) {
+    if (e.keyCode === 39) {
       this.charmander.dash();
     }
   }
@@ -73,24 +77,34 @@ class CharmandersRevenge {
   gameOver() {
     return (
       this.pokeballs.collidesWith(this.charmander.bounds()) ||
-      this.charmander.outOfBounds(this.height)  
+      this.charmander.outOfBounds(this.height)
     );
   }
 
+  drawScore() {
+    const loc = {
+      x: this.dimensions.width / 2,
+      y: this.dimensions.height / 4,
+    };
+    this.ctx.font = "bold 50pt sigmar one";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText(this.score, loc.x, loc.y);
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeText(this.score, loc.x, loc.y);
+  }
 
-  drawScore(){
-
-        const loc = {
-          x: this.dimensions.width / 2,
-          y: this.dimensions.height / 4,
-        };
-        this.ctx.font = "bold 50pt sigmar one";
-        this.ctx.fillStyle = "white";
-        this.ctx.fillText(this.score, loc.x, loc.y);
-        this.ctx.strokeStyle = "black";
-        this.ctx.lineWidth = 2;
-        this.ctx.strokeText(this.score, loc.x, loc.y);
-
+  drawGameOver() {
+    const loc = {
+      x: this.dimensions.width - 550,
+      y: (this.dimensions.height / 4) + 150,
+    };
+    this.ctx.font = "bold 50pt sigmar one";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText("GAME OVER", loc.x, loc.y);
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeText("GAME OVER", loc.x, loc.y);
   }
 }
 

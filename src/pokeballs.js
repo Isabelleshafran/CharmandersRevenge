@@ -14,6 +14,8 @@ class PokeBall {
 
     const firstBallDistance = 800;
 
+    this.speed = 3.5
+
     this.balls = [
       this.randomBall(firstBallDistance),
       this.randomBall(firstBallDistance + CONSTANTS.BALL_SPACING),
@@ -54,26 +56,26 @@ class PokeBall {
 
     this.eachBall(function (ball) {
 
-       let speed = 3.5;
+
 
        if (score >= 2) {
-         speed = 4.5;
+         this.speed = 4.5;
        } 
        
        if(score >= 5) {
-         speed = 5.5 
+         this.speed = 5.5 
        }
 
        if(score > 9) {
-         speed = 8
+         this.speed = 8
        }
 
        if (score > 15) {
-         speed = 10
+         this.speed = 10
        }
       
-      ball.left -= speed;
-      ball.right -= speed;
+      ball.left -= this.speed;
+      ball.right -= this.speed;
 
 
     });

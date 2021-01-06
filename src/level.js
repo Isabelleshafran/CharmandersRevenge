@@ -11,6 +11,8 @@ class Level {
 
     const grassDistance = 0
 
+    this.speed = 3.5;
+
 
     this.grass = [
       this.randomGrass(grassDistance),
@@ -55,27 +57,27 @@ class Level {
     
       this.eachGrass(function(grass) {
 
-        let speed = 3.5
+        // let speed = 3.5
 
 
        if (score >= 2) {
-         speed = 4.5;
+         this.speed = 4.5;
        }
 
        if (score >= 5) {
-         speed = 5.5;
+         this.speed = 5.5;
        }
 
        if (score > 9) {
-         speed = 8;
+         this.speed = 8;
        }
 
         if (score > 15) {
-          speed = 10;
+          this.speed = 10;
         }
     
-        grass.left -= speed
-        grass.right -= speed
+        grass.left -= this.speed
+        grass.right -= this.speed
 
         grass.bottom
       })

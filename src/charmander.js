@@ -39,9 +39,6 @@ class Charmander {
 
       this.height = this.sheetHeight / this.rows;
 
-      // this.char = new Image();
-      // this.char.src = "../images/spriteimages.png";
-
   }
 
   jump() {
@@ -99,8 +96,8 @@ class Charmander {
 
         ctx.drawImage(
           flash,
-          this.x,
-          (this.y - 20),
+          (this.x - 20),
+          (this.y),
           (CONSTANTS.CHAR_WIDTH * 2),
           (CONSTANTS.CHAR_HEIGHT * 2)
         );
@@ -173,9 +170,9 @@ class Charmander {
 
     ctx.drawImage(
       flames,
-      (this.x - 100),
+      (this.x - 90),
       this.y,
-      (CONSTANTS.CHAR_WIDTH * 2),
+      (200),
       CONSTANTS.CHAR_HEIGHT
     );
 

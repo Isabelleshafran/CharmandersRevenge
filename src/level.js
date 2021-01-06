@@ -47,10 +47,13 @@ class Level {
     return grass
   }
 
+
   moveGrass(){
       this.eachGrass(function(grass) {
+    
         grass.left -= CONSTANTS.GRASS_SPEED, 
         grass.right -= CONSTANTS.GRASS_SPEED, 
+
         grass.bottom
       })
       
@@ -59,9 +62,7 @@ class Level {
       // to make game go faster find a way to -= 2 more over time 
       
       if(this.grass[0].right <= 0) {
-        
-        
-        // console.log(count)
+      
           this.grass.shift();
           const newG = this.grass[1].left + CONSTANTS.GRASS_SPACING;
           this.grass.push(this.randomGrass(newG))
@@ -74,9 +75,6 @@ class Level {
         this.eachGrass(function (grass) {
           let ground = new Image();
           ground.src = "../images/grass.png";
-
-          // let height = 
-
 
             ctx.drawImage(ground, grass.left, grass.bottom, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
 

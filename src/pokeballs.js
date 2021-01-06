@@ -70,7 +70,7 @@ class PokeBall {
 
       // console.log(ball.left, charmander.x);
 
-      if(ball.left > (charmander.x - 15)) {
+      if(ball.left > (charmander.x)) {
    
             let pokeball = new Image();
             pokeball.src = "../images/pokeball.png";

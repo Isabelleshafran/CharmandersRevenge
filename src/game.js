@@ -1,6 +1,7 @@
 import Level from "./level";
 import Charmander from './charmander'
 import PokeBall from './pokeballs'
+import Instructions from './instructions'
 
 class CharmandersRevenge {
   constructor(canvas) {
@@ -12,7 +13,6 @@ class CharmandersRevenge {
 
   registerEvents() {
     this.boundClickHandler = this.click.bind(this);
-
     this.ctx.canvas.addEventListener("keydown", this.boundClickHandler);
   }
 
@@ -22,16 +22,31 @@ class CharmandersRevenge {
     this.level = new Level(this.dimensions);
     this.pokeballs = new PokeBall(this.dimensions);
     this.charmander = new Charmander(this.dimensions);
+    this.instructions = new Instructions(this.dimensions)
     this.animate();
   }
 
   animate() {
+
+    if(!this.running) {
+    //   console.log(this.instructions)
+    }
+    
     this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
+    
     this.level.animate(this.ctx, this.score);
     this.pokeballs.animate(this.ctx, this.charmander, this.score);
     this.charmander.animate(this.ctx, this.level);
 
-    // console.log(this.level.speed);
+    if (!this.running) {
+      this.instructions.animate(this.ctx)
+      //   console.log(this.instructions)
+    }
+    // console.log(this.running);
+    
+
+    
+
 
     if (this.gameOver()) {
       this.charmander.flash();
@@ -53,6 +68,7 @@ class CharmandersRevenge {
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }
+
   }
 
   play() {

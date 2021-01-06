@@ -22,19 +22,9 @@ class Level {
   }
 
   animate(ctx, score) {
-    this.drawBackground(ctx);
     this.moveGrass(score);
     this.drawGrass(ctx)
 
-  }
-
-  drawBackground(ctx) {
-    let sky = new Image();
-    sky.src = "../images/sky.png";
-    ctx.drawImage(sky, 0, 0, this.dimensions.width, this.dimensions.height);
-    sky.onload = () => {
-      ctx.drawImage(sky, 0, 0, this.dimensions.width, this.dimensions.height);
-    };
   }
 
   randomGrass(x){
@@ -51,13 +41,9 @@ class Level {
 
 
   moveGrass(score){
-
-
-    // console.log(score)
     
       this.eachGrass(function(grass) {
 
-        // let speed = 3.5
 
 
        if (score >= 2) {

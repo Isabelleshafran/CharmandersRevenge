@@ -17,7 +17,7 @@ class PokeBall {
     this.balls = [
       this.randomBall(firstBallDistance),
       this.randomBall(firstBallDistance + CONSTANTS.BALL_SPACING),
-      this.randomBall(firstBallDistance + (CONSTANTS.BALL_SPACING * 2)),
+      this.randomBall(firstBallDistance + CONSTANTS.BALL_SPACING * 2),
     ];
   }
 
@@ -30,11 +30,23 @@ class PokeBall {
     const ball = {
       left: x,
       right: CONSTANTS.BALL_WIDTH + x,
-      bottom: 150
+      bottom: 150,
+      passed: false,
       // bottom: Math.floor(Math.random() * 10) + 140,
     };
 
     return ball;
+  }
+
+  passedBall(char, callback) {
+    this.eachBall((ball) => {
+      if (ball.right < char.left) {
+        if (!ball.passed) {
+          ball.passed = true;
+          callback();
+        }
+      }
+    });
   }
 
   moveBalls() {
@@ -51,17 +63,27 @@ class PokeBall {
   }
 
   drawBalls(ctx) {
-
     this.eachBall(function (ball) {
       let pokeball = new Image();
       pokeball.src = "../images/pokeball.png";
 
       // image, x, y, width, height)
-      ctx.drawImage(pokeball, ball.left, ball.bottom, CONSTANTS.BALL_WIDTH, CONSTANTS.BALL_HEIGHT);
-
+      ctx.drawImage(
+        pokeball,
+        ball.left,
+        ball.bottom,
+        CONSTANTS.BALL_WIDTH,
+        CONSTANTS.BALL_HEIGHT
+      );
 
       pokeball.onload = () => {
-        ctx.drawImage(pokeball, ball.left, ball.bottom, CONSTANTS.BALL_WIDTH, CONSTANTS.BALL_HEIGHT);
+        ctx.drawImage(
+          pokeball,
+          ball.left,
+          ball.bottom,
+          CONSTANTS.BALL_WIDTH,
+          CONSTANTS.BALL_HEIGHT
+        );
       };
     });
   }
@@ -70,17 +92,13 @@ class PokeBall {
     this.balls.forEach(callback.bind(this));
   }
 
-
   collidesWith(char) {
     let collision = false;
 
     this.eachBall((ball) => {
-      if (
-
-        (ball.left >= 150 && ball.left <= 160) && char.bottom >= 55 
-      ) {
+      if (ball.left >= 150 && ball.left <= 160 && char.bottom >= 55) {
         collision = true;
-      } 
+      }
     });
 
     return collision;

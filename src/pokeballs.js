@@ -17,7 +17,7 @@ class PokeBall {
     this.balls = [
       this.randomBall(firstBallDistance),
       this.randomBall(firstBallDistance + CONSTANTS.BALL_SPACING),
-      this.randomBall(firstBallDistance + CONSTANTS.BALL_SPACING * 2),
+      this.randomBall(firstBallDistance + (CONSTANTS.BALL_SPACING * 2)),
     ];
   }
 
@@ -29,9 +29,9 @@ class PokeBall {
   randomBall(x) {
     const ball = {
       left: x,
-      right: 95 + x,
-      top: CONSTANTS.BALL_HEIGHT,
-      bottom: CONSTANTS.BALL_HEIGHT,
+      right: CONSTANTS.BALL_WIDTH + x,
+      bottom: 150
+      // bottom: Math.floor(Math.random() * 10) + 140,
     };
 
     return ball;
@@ -51,15 +51,17 @@ class PokeBall {
   }
 
   drawBalls(ctx) {
+
     this.eachBall(function (ball) {
       let pokeball = new Image();
       pokeball.src = "../images/pokeball.png";
 
-      ctx.drawImage(pokeball, ball.left, 175, 95, 95);
+      // image, x, y, width, height)
+      ctx.drawImage(pokeball, ball.left, ball.bottom, CONSTANTS.BALL_WIDTH, CONSTANTS.BALL_HEIGHT);
 
 
       pokeball.onload = () => {
-        ctx.drawImage(pokeball, ball.left, 175, 95, 95);
+        ctx.drawImage(pokeball, ball.left, ball.bottom, CONSTANTS.BALL_WIDTH, CONSTANTS.BALL_HEIGHT);
       };
     });
   }
@@ -73,13 +75,18 @@ class PokeBall {
     let collision = false;
 
     this.eachBall((ball) => {
-      // console.log(ball.left, char.right)
-      // console.log(ball.top) 95
-      console.log(char.bottom)
-      if((ball.left === (char.right + 1)) && (ball.top === char.bottom)) {
-        console.log(ball, char)
-        collision = true
-      }
+      if (
+        (ball.left === char.right ||
+          ball.left === char.right + 1 ||
+          ball.left === char.right - 1) &&
+        char.bottom > 55
+      ) 
+      
+      // if right side is between ball left and right than hes hit 
+      
+      {
+        collision = true;
+      } 
     });
 
     return collision;

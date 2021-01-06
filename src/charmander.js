@@ -1,10 +1,11 @@
+
 const CONSTANTS = {
   GRAVITY: 3,
   JUMP_SPEED: 70,
   DASH_SPEED: 300,
   NO_SPEED: 50,
-  CHAR_WIDTH: 100,
-  CHAR_HEIGHT: 100,
+  CHAR_WIDTH: 150,
+  CHAR_HEIGHT: 110,
 };
 
 
@@ -17,9 +18,29 @@ class Charmander {
 
     this.gameover = false 
 
+    this.tick = 0;
+
     this.x = 50;
     this.y = 185;
     this.vel = 0;
+
+    this.currentFrame = 0;
+
+      this.srcX;
+      this.srcY = 1;
+
+      this.sheetWidth = 2100;
+      this.sheetHeight = 1500;
+
+      this.cols = 2;
+      this.rows = 2;
+
+      this.width = this.sheetWidth / this.cols;
+
+      this.height = this.sheetHeight / this.rows;
+
+      // this.char = new Image();
+      // this.char.src = "../images/spriteimages.png";
 
   }
 
@@ -49,9 +70,6 @@ class Charmander {
   }
 
   moveChar(level) {
-
-
-    // y axis 
     this.y += this.vel;
     this.vel = CONSTANTS.GRAVITY;
 
@@ -95,35 +113,57 @@ class Charmander {
             (CONSTANTS.CHAR_WIDTH * 2),
             (CONSTANTS.CHAR_HEIGHT * 2)
           );
-
-          // ctx.clearRect();
         };
 
   }
 
+
+  updateFrame() {
+      this.srcX = this.currentFrame * this.width; 
+      this.srcY = this.currentFrame * this.height; 
+
+        this.tick++
+
+        if(this.tick === 10) {
+          this.currentFrame = ++this.currentFrame % this.cols; // 2% 2 = 1
+          this.tick = 0;
+        }
+        
+    }
+
   drawChar(ctx) {
-    let char = new Image();
-    char.src = "../images/charmander.png";
+     let char = new Image();
+     char.src = "../images/spriteimages.png";
+     
+     this.updateFrame();
 
-    ctx.drawImage(
-      char,
-      this.x,
-      this.y,
-      CONSTANTS.CHAR_WIDTH,
-      CONSTANTS.CHAR_HEIGHT
-    );
+    
+     char.onload = () => {
+              ctx.drawImage(
+                char,
+                this.srcX,
+                this.srcY,
+                this.width,
+                this.height,
+                this.x,
+                this.y,
+                CONSTANTS.CHAR_WIDTH,
+                CONSTANTS.CHAR_HEIGHT
+              );
+            };
 
+        ctx.drawImage(
+          char,
+          this.srcX,
+          this.srcY,
+          this.width,
+          this.height,
+          this.x,
+          this.y,
+          CONSTANTS.CHAR_WIDTH,
+          CONSTANTS.CHAR_HEIGHT
+        );
 
-    char.onload = () => {
-      ctx.drawImage(
-        char,
-        this.x,
-        this.y,
-        CONSTANTS.CHAR_WIDTH,
-        CONSTANTS.CHAR_HEIGHT
-      );
-
-    };
 
   }
 

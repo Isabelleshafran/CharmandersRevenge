@@ -1,9 +1,8 @@
 const CONSTANTS = {
   GRAVITY: 3,
-  JUMP_SPEED: 50,
+  JUMP_SPEED: 70,
   DASH_SPEED: 200,
   NO_SPEED: 50,
-//   TERMINAL_VEL: 12,
   CHAR_WIDTH: 100,
   CHAR_HEIGHT: 100,
 };
@@ -18,22 +17,33 @@ class Charmander {
 
     this.x = 50;
     this.y = 185;
-    // this.y = 320
     this.vel = 0;
   }
 
   jump() {
-    this.vel = -1 * CONSTANTS.JUMP_SPEED;
+
+    let i = 0; 
+
+    while(i < CONSTANTS.JUMP_SPEED){
+      this.vel = -1 * i
+      i +=1
+    }
   }
 
   dash() {
     this.dashing = true;
-    this.x = CONSTANTS.DASH_SPEED
+
+    let i = 50; 
+
+    while(i < CONSTANTS.DASH_SPEED){
+      console.log(i)
+      this.x = i; 
+      i += 1
+    }
   }
 
   moveChar(level) {
 
-    // console.log(this.y)
 
     // y axis 
     this.y += this.vel;
@@ -41,7 +51,6 @@ class Charmander {
 
     level.grass.forEach(grass => {
       if(this.x > grass.left && this.x < grass.right) {
-        // console.log(grass.bottom)
              if (this.y > (grass.bottom - 50)) {
                this.vel = 0
              }
@@ -107,18 +116,11 @@ class Charmander {
   }
 
   bounds() {
-    // console.log(this.x )
-    // x is 50 // right is 150
-
-    // y starts at 185
-    // console.log(this.y)
     return {
       left: this.x,
       right: this.x + CONSTANTS.CHAR_WIDTH,
       top: this.y,
       bottom: this.y,
-
-      // bottom: this.y + CONSTANTS.CHAR_HEIGHT,
     };
   }
 

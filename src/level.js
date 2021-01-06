@@ -42,7 +42,6 @@ class Level {
       right: CONSTANTS.GRASS_WIDTH + x,
       bottom: Math.floor(Math.random() * 60) + 200,
     };
-    // console.log(grass.left, grass.right)
 
 
     return grass

@@ -21,9 +21,9 @@ class PokeBall {
     ];
   }
 
-  animate(ctx, charmander) {
+  animate(ctx, charmander, score) {
     // console.log(charmander)
-    this.moveBalls();
+    this.moveBalls(score);
     this.drawBalls(ctx, charmander);
   }
 
@@ -50,10 +50,32 @@ class PokeBall {
     });
   }
 
-  moveBalls() {
+  moveBalls(score) {
+
     this.eachBall(function (ball) {
-      ball.left -= CONSTANTS.BALL_SPEED;
-      ball.right -= CONSTANTS.BALL_SPEED;
+
+       let speed = 3.5;
+
+       if (score >= 2) {
+         speed = 4.5;
+       } 
+       
+       if(score >= 5) {
+         speed = 5.5 
+       }
+
+       if(score > 9) {
+         speed = 8
+       }
+
+       if (score > 15) {
+         speed = 10
+       }
+      
+      ball.left -= speed;
+      ball.right -= speed;
+
+
     });
 
     if (this.balls[0].right <= 0) {

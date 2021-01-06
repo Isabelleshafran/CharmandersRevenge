@@ -19,9 +19,9 @@ class Level {
     ];
   }
 
-  animate(ctx) {
+  animate(ctx, score) {
     this.drawBackground(ctx);
-    this.moveGrass();
+    this.moveGrass(score);
     this.drawGrass(ctx)
 
   }
@@ -48,11 +48,34 @@ class Level {
   }
 
 
-  moveGrass(){
-      this.eachGrass(function(grass) {
+  moveGrass(score){
+
+
+    // console.log(score)
     
-        grass.left -= CONSTANTS.GRASS_SPEED, 
-        grass.right -= CONSTANTS.GRASS_SPEED, 
+      this.eachGrass(function(grass) {
+
+        let speed = 3.5
+
+
+       if (score >= 2) {
+         speed = 4.5;
+       }
+
+       if (score >= 5) {
+         speed = 5.5;
+       }
+
+       if (score > 9) {
+         speed = 8;
+       }
+
+        if (score > 15) {
+          speed = 10;
+        }
+    
+        grass.left -= speed
+        grass.right -= speed
 
         grass.bottom
       })

@@ -1,6 +1,7 @@
 import Level from "./level";
 import Charmander from './charmander'
 import PokeBall from './pokeballs'
+import Sprite from './sprite'
 
 class CharmandersRevenge {
   constructor(canvas) {
@@ -22,20 +23,36 @@ class CharmandersRevenge {
     this.level = new Level(this.dimensions);
     this.charmander = new Charmander(this.dimensions);
     this.pokeballs = new PokeBall(this.dimensions);
+
+    // sprite
+
+    this.sprite = new Sprite(this.dimensions)
+
+    // sprite 
+
     this.animate();
   }
 
   animate() {
     this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
-    this.level.animate(this.ctx);
+    this.level.animate(this.ctx, this.score);
     this.charmander.animate(this.ctx, this.level);
-    this.pokeballs.animate(this.ctx, this.charmander);
+    this.pokeballs.animate(this.ctx, this.charmander, this.score);
+
+
+    // sprite 
+
+    this.sprite.animate(this.ctx)
+
+    // sprite 
 
     if(this.gameOver()) {
       
       this.charmander.flash()
       setTimeout(() => (this.restart(), alert('GAME OVER')), 100)
     }
+
+    // console.log(this.score)
 
 
     this.pokeballs.passedBall(this.charmander.bounds(), () => {

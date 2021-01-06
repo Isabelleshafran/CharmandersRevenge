@@ -20,6 +20,7 @@ class Charmander {
     this.x = 50;
     this.y = 185;
     this.vel = 0;
+
   }
 
   jump() {
@@ -122,8 +123,8 @@ class Charmander {
         CONSTANTS.CHAR_HEIGHT
       );
 
-      // ctx.clearRect();
     };
+
   }
 
   drawFlames(ctx) {

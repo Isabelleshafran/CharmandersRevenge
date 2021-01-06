@@ -15,6 +15,8 @@ class Charmander {
 
     this.dashing = false 
 
+    this.gameover = false 
+
     this.x = 50;
     this.y = 185;
     this.vel = 0;
@@ -36,10 +38,13 @@ class Charmander {
     let i = 50; 
 
     while(i < CONSTANTS.DASH_SPEED){
-      console.log(i)
       this.x = i; 
       i += 1
     }
+  }
+
+  flash() {
+    this.gameover = true;
   }
 
   moveChar(level) {
@@ -65,6 +70,34 @@ class Charmander {
       this.dashing = false;
     }
     
+  }
+
+  drawFlash(ctx){
+    let flash = new Image();
+    flash.src = "../images/flash.png"
+
+    // ctx.globalCompositeOperation='destination-over'
+
+        ctx.drawImage(
+          flash,
+          this.x,
+          (this.y - 20),
+          (CONSTANTS.CHAR_WIDTH * 2),
+          (CONSTANTS.CHAR_HEIGHT * 2)
+        );
+
+        flash.onload = () => {
+          ctx.drawImage(
+            flash,
+            this.x,
+            (this.y - 20),
+            (CONSTANTS.CHAR_WIDTH * 2),
+            (CONSTANTS.CHAR_HEIGHT * 2)
+          );
+
+          // ctx.clearRect();
+        };
+
   }
 
   drawChar(ctx) {
@@ -113,6 +146,10 @@ class Charmander {
     if(this.dashing === true) {
       this.drawFlames(ctx)
     }
+    
+    if(this.gameover === true){
+      this.drawFlash(ctx)
+    }
   }
 
   bounds() {
@@ -125,8 +162,9 @@ class Charmander {
   }
 
   outOfBounds() {
+    // const aboveTheTop = this.y < -50
     const belowTheBottom = this.y > 350
-    return belowTheBottom 
+    return belowTheBottom
   }
 }
 

@@ -74,6 +74,8 @@ class PokeBall {
   collidesWith(char) {
     let collision = false;
 
+    // console.log(char)
+
     this.eachBall((ball) => {
       if (
         (ball.left === char.right ||

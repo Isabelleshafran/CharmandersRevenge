@@ -32,8 +32,11 @@ class CharmandersRevenge {
     this.pokeballs.animate(this.ctx);
 
     if(this.gameOver()) {
-      alert('GAME OVER');
-      this.restart();
+      
+     
+
+      this.charmander.flash()
+      setTimeout(() => (this.restart(), alert('GAME OVER')), 100)
     }
 
     if (this.running) {

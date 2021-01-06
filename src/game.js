@@ -29,7 +29,7 @@ class CharmandersRevenge {
     this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
     this.level.animate(this.ctx);
     this.charmander.animate(this.ctx, this.level);
-    this.pokeballs.animate(this.ctx);
+    this.pokeballs.animate(this.ctx, this.charmander);
 
     if(this.gameOver()) {
       

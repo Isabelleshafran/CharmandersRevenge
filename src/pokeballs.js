@@ -21,9 +21,10 @@ class PokeBall {
     ];
   }
 
-  animate(ctx) {
+  animate(ctx, charmander) {
+    // console.log(charmander)
     this.moveBalls();
-    this.drawBalls(ctx);
+    this.drawBalls(ctx, charmander);
   }
 
   randomBall(x) {
@@ -62,29 +63,41 @@ class PokeBall {
     }
   }
 
-  drawBalls(ctx) {
+  drawBalls(ctx, charmander) {
     this.eachBall(function (ball) {
-      let pokeball = new Image();
-      pokeball.src = "../images/pokeball.png";
 
+      // console.log(charmander)
+
+      // console.log(ball.left, charmander.x);
+
+      if(ball.left > (charmander.x - 15)) {
+   
+            let pokeball = new Image();
+            pokeball.src = "../images/pokeball.png";
+            
+            ctx.drawImage(
+              pokeball,
+              ball.left,
+              ball.bottom,
+              CONSTANTS.BALL_WIDTH,
+              CONSTANTS.BALL_HEIGHT
+            );
+      
+            pokeball.onload = () => {
+              ctx.drawImage(
+                pokeball,
+                ball.left,
+                ball.bottom,
+                CONSTANTS.BALL_WIDTH,
+                CONSTANTS.BALL_HEIGHT
+              );
+            };
+
+      }
+
+
+      // console.log(ball)
       // image, x, y, width, height)
-      ctx.drawImage(
-        pokeball,
-        ball.left,
-        ball.bottom,
-        CONSTANTS.BALL_WIDTH,
-        CONSTANTS.BALL_HEIGHT
-      );
-
-      pokeball.onload = () => {
-        ctx.drawImage(
-          pokeball,
-          ball.left,
-          ball.bottom,
-          CONSTANTS.BALL_WIDTH,
-          CONSTANTS.BALL_HEIGHT
-        );
-      };
     });
   }
 

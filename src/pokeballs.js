@@ -1,6 +1,6 @@
 
 const CONSTANTS = {
-  BALL_SPEED: 3,
+  BALL_SPEED: 3.5,
   BALL_WIDTH: 95,
   BALL_HEIGHT: 95,
   EDGE_BUFFER: 50,
@@ -74,19 +74,11 @@ class PokeBall {
   collidesWith(char) {
     let collision = false;
 
-    // console.log(char)
-
     this.eachBall((ball) => {
       if (
-        (ball.left === char.right ||
-          ball.left === char.right + 1 ||
-          ball.left === char.right - 1) &&
-        char.bottom > 55
-      ) 
-      
-      // if right side is between ball left and right than hes hit 
-      
-      {
+
+        (ball.left >= 150 && ball.left <= 160) && char.bottom >= 55 
+      ) {
         collision = true;
       } 
     });

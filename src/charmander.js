@@ -1,7 +1,7 @@
 const CONSTANTS = {
   GRAVITY: 3,
   JUMP_SPEED: 70,
-  DASH_SPEED: 200,
+  DASH_SPEED: 250,
   NO_SPEED: 50,
   CHAR_WIDTH: 100,
   CHAR_HEIGHT: 100,
@@ -65,7 +65,7 @@ class Charmander {
 
     // x axis 
     if(this.x > 50){
-      this.x -= 8
+      this.x -= 5
     } else {
       this.dashing = false;
     }
@@ -132,9 +132,9 @@ class Charmander {
 
     ctx.drawImage(
       flames,
-      this.x,
+      (this.x - 100),
       this.y,
-      CONSTANTS.CHAR_WIDTH,
+      (CONSTANTS.CHAR_WIDTH * 2),
       CONSTANTS.CHAR_HEIGHT
     );
 
@@ -153,12 +153,22 @@ class Charmander {
   }
 
   bounds() {
-    return {
-      left: this.x,
-      right: this.x + CONSTANTS.CHAR_WIDTH,
-      top: this.y,
-      bottom: this.y,
-    };
+
+    if(this.dashing === true ){
+      return {
+        left: 0, 
+        right: 0, 
+        top: 0, 
+        bottom: 0
+      }   
+    } else {
+      return {
+        left: this.x,
+        right: this.x + CONSTANTS.CHAR_WIDTH,
+        top: this.y,
+        bottom: this.y,
+      };
+    }
   }
 
   outOfBounds() {

@@ -90,7 +90,7 @@ class Charmander {
 
   drawFlash(ctx){
     let flash = new Image();
-    flash.src = "../images/flash.png"
+    flash.src = "./images/flash.png"
 
     // ctx.globalCompositeOperation='destination-over'
 
@@ -164,7 +164,7 @@ class Charmander {
 
   drawFlames(ctx) {
     let flames = new Image();
-    flames.src = "../images/flames.png";
+    flames.src = "./images/flames.png";
 
     ctx.drawImage(
       flames,

@@ -72,8 +72,6 @@ class Level {
       
     
       
-      // to make game go faster find a way to -= 2 more over time 
-      
       if(this.grass[0].right <= 0) {
       
           this.grass.shift();

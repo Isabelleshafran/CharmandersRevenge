@@ -203,9 +203,9 @@ class Charmander {
   }
 
   outOfBounds() {
-    // const aboveTheTop = this.y < -50
-    const belowTheBottom = this.y > 350
-    return belowTheBottom
+    const aboveTheTop = this.y < -100
+    const belowTheBottom = this.y > 310
+    return belowTheBottom || aboveTheTop
   }
 }
 

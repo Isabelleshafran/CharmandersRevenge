@@ -1,11 +1,10 @@
-import CharmandersRevenge from './game'
-
-
+import CharmandersRevenge from './game';
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById("pokemon-game");
     new CharmandersRevenge(canvas)
+
 
     const sound = document.getElementById('sound');
     const soundOn = document.getElementById('sound-on')

@@ -131,7 +131,7 @@ class Charmander {
   drawChar(ctx) {
     let char = new Image();
     //  char.src = "../images/spriteimages.png";
-     char.src = "../images/charsprite.png";
+     char.src = "/../images/charsprite.png";
 
     this.updateFrame();
 

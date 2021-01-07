@@ -17,7 +17,7 @@ class PokeBall {
     this.speed = 3.5;
 
     this.pokeballPic = new Image();
-    this.pokeballPic.src = "../images/pokeball.png";
+    this.pokeballPic.src = "/../images/pokeball.png";
 
     this.balls = [
       this.randomBall(firstBallDistance),

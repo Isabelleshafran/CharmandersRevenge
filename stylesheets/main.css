@@ -7,10 +7,14 @@ body {
     display: flex; 
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
     color: white;
 
     font-family: 'sigmar one';
+}
+
+#sound-on:hover, #sound-off:hover {
+    cursor: pointer;
 }
 
 h1 {

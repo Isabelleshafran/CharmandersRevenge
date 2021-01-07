@@ -55,6 +55,7 @@ class CharmandersRevenge {
 
     this.pokeballs.passedBall(this.charmander.bounds(), () => {
       this.score += 1;
+      console.log(this.score);
     });
 
     

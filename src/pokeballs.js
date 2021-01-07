@@ -14,7 +14,10 @@ class PokeBall {
 
     const firstBallDistance = 800;
 
-    this.speed = 3.5
+    this.speed = 3.5;
+
+    this.pokeballPic = new Image();
+    this.pokeballPic.src = "../images/pokeball.png";
 
     this.balls = [
       this.randomBall(firstBallDistance),
@@ -90,26 +93,22 @@ class PokeBall {
   drawBalls(ctx, charmander) {
     this.eachBall(function (ball) {
 
-      // console.log(charmander)
-
-      // console.log(ball.left, charmander.x);
-
       if(ball.left > (charmander.x)) {
    
-            let pokeball = new Image();
-            pokeball.src = "../images/pokeball.png";
+            // let pokeball = new Image();
+            // pokeball.src = "../images/pokeball.png";
             
             ctx.drawImage(
-              pokeball,
+              this.pokeballPic,
               ball.left,
               ball.bottom,
               CONSTANTS.BALL_WIDTH,
               CONSTANTS.BALL_HEIGHT
             );
       
-            pokeball.onload = () => {
+            this.pokeballPic.onload = () => {
               ctx.drawImage(
-                pokeball,
+                this.pokeballPic,
                 ball.left,
                 ball.bottom,
                 CONSTANTS.BALL_WIDTH,
@@ -134,7 +133,10 @@ class PokeBall {
 
     // console.log(char2.flash);
     this.eachBall((ball) => {
-      if (ball.left >= 150 && ball.left <= 160 && char.bottom >= 55) {
+
+      // console.log(ball.left);
+      
+      if (ball.left >= 105 && ball.left <= 115 && char.bottom >= 55) {
         collision = true;
       }
     });

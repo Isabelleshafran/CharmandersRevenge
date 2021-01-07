@@ -13,6 +13,8 @@ class Level {
 
     this.speed = 3.5;
 
+    
+
 
     this.grass = [
       this.randomGrass(grassDistance),
@@ -82,8 +84,9 @@ class Level {
   }
 
   drawGrass(ctx){
-
-        this.eachGrass(function (grass) {
+    
+    this.eachGrass(function (grass) {
+      
           let ground = new Image();
           ground.src = "../images/grass.png";
 

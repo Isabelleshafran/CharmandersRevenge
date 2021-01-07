@@ -20,8 +20,8 @@ class Charmander {
 
     this.tick = 0;
 
-    this.x = 50;
-    this.y = 185;
+    this.x = 20;
+    this.y = 155;
     this.vel = 0;
 
     this.currentFrame = 0;
@@ -202,7 +202,7 @@ class Charmander {
     } else {
       return {
         left: this.x,
-        right: this.x + CONSTANTS.CHAR_WIDTH,
+        right: this.x + (CONSTANTS.CHAR_WIDTH),
         top: this.y,
         bottom: this.y,
       };

@@ -38,7 +38,6 @@ class PokeBall {
       right: CONSTANTS.BALL_WIDTH + x,
       bottom: 150,
       passed: false,
-      // bottom: Math.floor(Math.random() * 10) + 140,
     };
 
     return ball;
@@ -68,12 +67,9 @@ class PokeBall {
        }
 
        if(score > 9) {
-         this.speed = 7.5
+         this.speed = 6.5
        }
 
-       if (score > 15) {
-         this.speed = 10
-       }
       
       ball.left -= this.speed;
       ball.right -= this.speed;

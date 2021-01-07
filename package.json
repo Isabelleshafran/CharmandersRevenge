@@ -5,6 +5,7 @@
   "main": "Webpack.config.js",
   "dependencies": {
     "pokemon-font": "^1.8.1",
+    "webfontloader": "^1.6.28",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
   },

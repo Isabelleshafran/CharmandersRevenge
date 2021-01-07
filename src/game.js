@@ -9,6 +9,7 @@ class CharmandersRevenge {
     this.dimensions = { width: canvas.width, height: canvas.height };
     this.registerEvents();
     this.restart();
+
   }
 
   registerEvents() {
@@ -22,47 +23,43 @@ class CharmandersRevenge {
     this.level = new Level(this.dimensions);
     this.pokeballs = new PokeBall(this.dimensions);
     this.charmander = new Charmander(this.dimensions);
-    this.instructions = new Instructions(this.dimensions)
+    this.instructions = new Instructions(this.dimensions);
     this.animate();
   }
 
   animate() {
     this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
-    
+
     this.level.animate(this.ctx, this.score);
     this.pokeballs.animate(this.ctx, this.charmander, this.score);
     this.charmander.animate(this.ctx, this.level);
-    
-    if (!this.running) {
-      this.instructions.animate(this.ctx)
-    }
 
+    if (!this.running) {
+      this.instructions.animate(this.ctx);
+    }
+  
 
     if (this.gameOver()) {
-      this.charmander.drawFlash(this.ctx)
+      this.charmander.drawFlash(this.ctx);
 
-      this.drawGameOver()
-      this.drawRestarting()
-      this.running = false
+      this.drawGameOver();
+      this.drawRestarting();
+      this.running = false;
 
       setTimeout(() => {
         this.restart();
-      }, 3000)
-      
+      }, 3000);
     }
-
 
     this.pokeballs.passedBall(this.charmander.bounds(), () => {
       this.score += 1;
       // console.log(this.score);
     });
 
-    
     if (this.running) {
-      this.drawScore()
+      this.drawScore();
       requestAnimationFrame(this.animate.bind(this));
     }
-
   }
 
   play() {
@@ -107,7 +104,7 @@ class CharmandersRevenge {
   drawGameOver() {
     const loc = {
       x: this.dimensions.width - 550,
-      y: (this.dimensions.height / 4) + 150,
+      y: this.dimensions.height / 4 + 150,
     };
     this.ctx.font = "bold 50pt sigmar one";
     this.ctx.fillStyle = "white";
@@ -117,18 +114,20 @@ class CharmandersRevenge {
     this.ctx.strokeText("GAME OVER", loc.x, loc.y);
   }
 
-  drawRestarting(){
-       const loc = {
-         x: this.dimensions.width - 550,
-         y: 385,
-       };
-       this.ctx.font = "bold 30pt sigmar one";
-       this.ctx.fillStyle = "white";
-       this.ctx.fillText("RESTARTING NOW...", loc.x, loc.y);
-       this.ctx.strokeStyle = "black";
-       this.ctx.lineWidth = 2;
-       this.ctx.strokeText("RESTARTING NOW...", loc.x, loc.y);
 
+  drawRestarting() {
+
+   
+    const loc = {
+      x: this.dimensions.width - 550,
+      y: 385,
+    };
+    this.ctx.font = "bold 30pt sigmar one";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText("RESTARTING NOW...", loc.x, loc.y);
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeText("RESTARTING NOW...", loc.x, loc.y);
   }
 }
 

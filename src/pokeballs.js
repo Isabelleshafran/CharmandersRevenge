@@ -132,6 +132,7 @@ class PokeBall {
   collidesWith(char) {
     let collision = false;
 
+    // console.log(char2.flash);
     this.eachBall((ball) => {
       if (ball.left >= 150 && ball.left <= 160 && char.bottom >= 55) {
         collision = true;

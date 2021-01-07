@@ -27,11 +27,6 @@ class CharmandersRevenge {
   }
 
   animate() {
-
-    if(!this.running) {
-    //   console.log(this.instructions)
-    }
-    
     this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
     
     this.level.animate(this.ctx, this.score);
@@ -40,31 +35,31 @@ class CharmandersRevenge {
 
     if (!this.running) {
       this.instructions.animate(this.ctx)
-      //   console.log(this.instructions)
     }
-    // console.log(this.running);
-    
-
-    
 
 
     if (this.gameOver()) {
-      this.charmander.flash();
-      this.level.speed = 0;
-      this.pokeballs.speed = 0;
-      this.charmander.vel = 0;
-      this.charmander.currentFrame = 0;
-
+      
+      this.running = false
       this.drawGameOver()
+      // this.charmander.flash();
 
+      setTimeout(() => {
+        this.restart();
+      }, 3000)
+      
     }
 
     this.pokeballs.passedBall(this.charmander.bounds(), () => {
       this.score += 1;
     });
 
-    this.drawScore();
 
+    if(this.running){
+      this.drawScore()
+    }
+
+    
     if (this.running) {
       requestAnimationFrame(this.animate.bind(this));
     }

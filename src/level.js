@@ -8,13 +8,8 @@ const CONSTANTS = {
 class Level {
   constructor(dimensions) {
     this.dimensions = dimensions;
-
     const grassDistance = 0
-
     this.speed = 3.5;
-
-    
-
 
     this.grass = [
       this.randomGrass(grassDistance),
@@ -30,79 +25,57 @@ class Level {
   }
 
   randomGrass(x){
-
     const grass = {
       left: x,
       right: CONSTANTS.GRASS_WIDTH + x,
       bottom: Math.floor(Math.random() * 60) + 200,
     };
-
-
     return grass
   }
 
 
   moveGrass(score){
-    
       this.eachGrass(function(grass) {
-
-
-
        if (score >= 2) {
          this.speed = 4.5;
        }
-
        if (score >= 5) {
          this.speed = 5.5;
        }
-
        if (score > 9) {
          this.speed = 6.5;
        }
 
-
-    
         grass.left -= this.speed
         grass.right -= this.speed
 
         grass.bottom
       })
       
-    
-      
       if(this.grass[0].right <= 0) {
-      
           this.grass.shift();
           const newG = this.grass[1].left + CONSTANTS.GRASS_SPACING;
           this.grass.push(this.randomGrass(newG))
-      
       }
   }
 
   drawGrass(ctx){
-    
     this.eachGrass(function (grass) {
+      let ground = new Image();
+      ground.src = "../assets/images/grass.png";
 
-          let ground = new Image();
-          ground.src = "./images/grass.png";
+      ctx.drawImage(ground, grass.left, grass.bottom, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
 
-            ctx.drawImage(ground, grass.left, grass.bottom, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
-
-
-            ground.onload = () => {
-  
-     
-            ctx.drawImage(
-              ground,
-              grass.left,
-              grass.bottom,
-              CONSTANTS.GRASS_WIDTH,
-              CONSTANTS.GRASS_HEIGHT
-            );
-
-
-          };
-        });
+      ground.onload = () => {
+        ctx.drawImage(
+          ground,
+          grass.left,
+          grass.bottom,
+          CONSTANTS.GRASS_WIDTH,
+          CONSTANTS.GRASS_HEIGHT
+        );
+      };
+    });
   }
 
 

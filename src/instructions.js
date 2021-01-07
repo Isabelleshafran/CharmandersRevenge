@@ -1,13 +1,10 @@
-
-// let WebFont = require("webfontloader");
-
 class Instructions {
   constructor(dimensions) {
     this.dimensions = dimensions;
 
     this.sigmar = new FontFace(
       "Sigmar One",
-      "url(images/SigmarOne-Regular.ttf)"
+      "url(assets/SigmarOne-Regular.ttf)"
     );
   }
 
@@ -15,7 +12,7 @@ class Instructions {
     this.drawHowToPlay(ctx);
     this.drawRightArrow(ctx);
     this.drawRightArrowInstructions(ctx);
-    this.drawLeftArrow(ctx);
+    this.drawUpArrow(ctx);
     this.drawAnyKey(ctx);
   }
 
@@ -67,7 +64,7 @@ class Instructions {
     })
   }
 
-  drawLeftArrow(ctx) {
+  drawUpArrow(ctx) {
 
     this.sigmar.load().then((font) => {
       const loc = {

@@ -38,7 +38,6 @@ class CharmandersRevenge {
       this.instructions.animate(this.ctx);
     }
   
-
     if (this.gameOver()) {
       this.charmander.drawFlash(this.ctx);
 
@@ -116,8 +115,6 @@ class CharmandersRevenge {
 
 
   drawRestarting() {
-
-   
     const loc = {
       x: this.dimensions.width - 550,
       y: 385,

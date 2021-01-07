@@ -88,7 +88,7 @@ class Level {
     this.eachGrass(function (grass) {
 
           let ground = new Image();
-          ground.src = "/../images/grass.png";
+          ground.src = "./images/grass.png";
 
             ctx.drawImage(ground, grass.left, grass.bottom, CONSTANTS.GRASS_WIDTH, CONSTANTS.GRASS_HEIGHT);
 

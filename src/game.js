@@ -39,7 +39,6 @@ class CharmandersRevenge {
 
 
     if (this.gameOver()) {
-
       this.charmander.drawFlash(this.ctx)
 
       this.drawGameOver()
@@ -125,10 +124,10 @@ class CharmandersRevenge {
        };
        this.ctx.font = "bold 30pt sigmar one";
        this.ctx.fillStyle = "white";
-       this.ctx.fillText("RESTARTING NOW", loc.x, loc.y);
+       this.ctx.fillText("RESTARTING NOW...", loc.x, loc.y);
        this.ctx.strokeStyle = "black";
        this.ctx.lineWidth = 2;
-       this.ctx.strokeText("RESTARTING NOW", loc.x, loc.y);
+       this.ctx.strokeText("RESTARTING NOW...", loc.x, loc.y);
 
   }
 }

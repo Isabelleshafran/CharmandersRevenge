@@ -77,7 +77,7 @@ class Charmander {
 
   drawFlash(ctx) {
     let flash = new Image();
-    flash.src = "../assets/images/flash.png";
+    flash.src = "./assets/images/flash.png";
 
     ctx.drawImage(
       flash,
@@ -111,7 +111,7 @@ class Charmander {
 
   drawChar(ctx) {
     let char = new Image();
-    char.src = "../assets/images/charsprite.png";
+    char.src = "./assets/images/charsprite.png";
 
     this.updateFrame();
 
@@ -144,7 +144,7 @@ class Charmander {
 
   drawFlames(ctx) {
     let flames = new Image();
-    flames.src = "../assets/images/flames.png";
+    flames.src = "./assets/images/flames.png";
 
     ctx.drawImage(flames, this.x - 90, this.y, 200, CONSTANTS.CHAR_HEIGHT);
   }

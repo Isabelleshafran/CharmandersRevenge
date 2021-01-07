@@ -14,7 +14,7 @@ class PokeBall {
     const firstBallDistance = 800;
     this.speed = 3.5;
     this.pokeballPic = new Image();
-    this.pokeballPic.src = "../assets/images/pokeball.png";
+    this.pokeballPic.src = "./assets/images/pokeball.png";
 
     this.balls = [
       this.randomBall(firstBallDistance),

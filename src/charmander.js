@@ -68,7 +68,7 @@ class Charmander {
 
     level.grass.forEach(grass => {
       if(this.x > grass.left && this.x < grass.right) {
-             if (this.y > (grass.bottom - 50)) {
+             if (this.y > (grass.bottom - 75)) {
                this.vel = 0
              }
         }
@@ -125,7 +125,6 @@ class Charmander {
 
   drawChar(ctx) {
     let char = new Image();
-    //  char.src = "../images/spriteimages.png";
      char.src = "./images/charsprite.png";
 
     this.updateFrame();

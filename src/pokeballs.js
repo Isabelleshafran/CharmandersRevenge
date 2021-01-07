@@ -136,7 +136,7 @@ class PokeBall {
 
       // console.log(ball.left);
       
-      if (ball.left >= 105 && ball.left <= 115 && char.bottom >= 55) {
+      if (ball.left >= 125 && ball.left <= 135 && char.bottom >= 55) {
         collision = true;
       }
     });

@@ -4,8 +4,8 @@ const CONSTANTS = {
   JUMP_SPEED: 70,
   DASH_SPEED: 300,
   NO_SPEED: 50,
-  CHAR_WIDTH: 150,
-  CHAR_HEIGHT: 110,
+  CHAR_WIDTH: 220,
+  CHAR_HEIGHT: 150,
 };
 
 
@@ -29,8 +29,8 @@ class Charmander {
       this.srcX;
       this.srcY = 1;
 
-      this.sheetWidth = 2100;
-      this.sheetHeight = 1500;
+      this.sheetWidth = 900;
+      this.sheetHeight = 600;
 
       this.cols = 2;
       this.rows = 2;
@@ -121,7 +121,7 @@ class Charmander {
 
         this.tick++
 
-        if(this.tick === 10) {
+        if(this.tick === 13) {
           this.currentFrame = ++this.currentFrame % this.cols; // 2% 2 = 1
           this.tick = 0;
         }
@@ -129,39 +129,37 @@ class Charmander {
     }
 
   drawChar(ctx) {
-     let char = new Image();
-     char.src = "../images/spriteimages.png";
-     
-     this.updateFrame();
+    let char = new Image();
+    //  char.src = "../images/spriteimages.png";
+     char.src = "../images/charsprite.png";
 
-    
-     char.onload = () => {
-              ctx.drawImage(
-                char,
-                this.srcX,
-                this.srcY,
-                this.width,
-                this.height,
-                this.x,
-                this.y,
-                CONSTANTS.CHAR_WIDTH,
-                CONSTANTS.CHAR_HEIGHT
-              );
-            };
+    this.updateFrame();
 
-        ctx.drawImage(
-          char,
-          this.srcX,
-          this.srcY,
-          this.width,
-          this.height,
-          this.x,
-          this.y,
-          CONSTANTS.CHAR_WIDTH,
-          CONSTANTS.CHAR_HEIGHT
-        );
+    char.onload = () => {
+      ctx.drawImage(
+        char,
+        this.srcX,
+        this.srcY,
+        this.width,
+        this.height,
+        this.x,
+        this.y,
+        CONSTANTS.CHAR_WIDTH,
+        CONSTANTS.CHAR_HEIGHT
+      );
+    };
 
-
+    ctx.drawImage(
+      char,
+      this.srcX,
+      this.srcY,
+      this.width,
+      this.height,
+      this.x,
+      this.y,
+      CONSTANTS.CHAR_WIDTH,
+      CONSTANTS.CHAR_HEIGHT
+    );
   }
 
   drawFlames(ctx) {

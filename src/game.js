@@ -13,7 +13,7 @@ class CharmandersRevenge {
 
   registerEvents() {
     this.boundClickHandler = this.click.bind(this);
-    this.ctx.canvas.addEventListener("keydown", this.boundClickHandler);
+    document.addEventListener("keydown", this.boundClickHandler);
   }
 
   restart() {

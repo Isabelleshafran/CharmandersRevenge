@@ -32,17 +32,19 @@ class CharmandersRevenge {
     this.level.animate(this.ctx, this.score);
     this.pokeballs.animate(this.ctx, this.charmander, this.score);
     this.charmander.animate(this.ctx, this.level);
-
+    
     if (!this.running) {
       this.instructions.animate(this.ctx)
     }
 
 
     if (this.gameOver()) {
-      
-      this.running = false
+
+      this.charmander.drawFlash(this.ctx)
+
       this.drawGameOver()
-      // this.charmander.flash();
+      this.drawRestarting()
+      this.running = false
 
       setTimeout(() => {
         this.restart();
@@ -50,17 +52,14 @@ class CharmandersRevenge {
       
     }
 
+
     this.pokeballs.passedBall(this.charmander.bounds(), () => {
       this.score += 1;
     });
 
-
-    if(this.running){
-      this.drawScore()
-    }
-
     
     if (this.running) {
+      this.drawScore()
       requestAnimationFrame(this.animate.bind(this));
     }
 
@@ -87,7 +86,7 @@ class CharmandersRevenge {
 
   gameOver() {
     return (
-      this.pokeballs.collidesWith(this.charmander.bounds()) ||
+      this.pokeballs.collidesWith(this.charmander) ||
       this.charmander.outOfBounds(this.height)
     );
   }
@@ -116,6 +115,20 @@ class CharmandersRevenge {
     this.ctx.strokeStyle = "black";
     this.ctx.lineWidth = 2;
     this.ctx.strokeText("GAME OVER", loc.x, loc.y);
+  }
+
+  drawRestarting(){
+       const loc = {
+         x: this.dimensions.width - 550,
+         y: 385,
+       };
+       this.ctx.font = "bold 30pt sigmar one";
+       this.ctx.fillStyle = "white";
+       this.ctx.fillText("RESTARTING NOW", loc.x, loc.y);
+       this.ctx.strokeStyle = "black";
+       this.ctx.lineWidth = 2;
+       this.ctx.strokeText("RESTARTING NOW", loc.x, loc.y);
+
   }
 }
 

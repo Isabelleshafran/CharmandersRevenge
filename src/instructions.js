@@ -18,12 +18,14 @@ class Instructions {
       y: 50,
     };
 
-    ctx.font = "bold 30pt sigmar one";
-    ctx.fillStyle = "white";
-    ctx.fillText("HOW TO PLAY", loc.x, loc.y);
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 2;
-    ctx.strokeText("HOW TO PLAY", loc.x, loc.y);
+
+      ctx.font = "bold 30pt sigmar one";
+      ctx.fillStyle = "white";
+      ctx.fillText("HOW TO PLAY", loc.x, loc.y);
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 2;
+      ctx.strokeText("HOW TO PLAY", loc.x, loc.y);
+
   }
 
   drawRightArrow(ctx) {
@@ -31,6 +33,8 @@ class Instructions {
       x: 125,
       y: 120,
     };
+
+    
 
     ctx.font = "bold 20pt sigmar one";
     ctx.fillStyle = "white";

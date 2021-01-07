@@ -59,8 +59,6 @@ class PokeBall {
 
     this.eachBall(function (ball) {
 
-
-
        if (score >= 2) {
          this.speed = 4.5;
        } 
@@ -70,7 +68,7 @@ class PokeBall {
        }
 
        if(score > 9) {
-         this.speed = 8
+         this.speed = 7.5
        }
 
        if (score > 15) {
@@ -94,9 +92,6 @@ class PokeBall {
     this.eachBall(function (ball) {
 
       if(ball.left > (charmander.x)) {
-   
-            // let pokeball = new Image();
-            // pokeball.src = "../images/pokeball.png";
             
             ctx.drawImage(
               this.pokeballPic,
@@ -117,10 +112,6 @@ class PokeBall {
             };
 
       }
-
-
-      // console.log(ball)
-      // image, x, y, width, height)
     });
   }
 
@@ -131,12 +122,10 @@ class PokeBall {
   collidesWith(char) {
     let collision = false;
 
-    // console.log(char2.flash);
     this.eachBall((ball) => {
 
-      // console.log(ball.left);
       
-      if (ball.left >= 125 && ball.left <= 135 && char.bottom >= 55) {
+      if (ball.left >= 125 && ball.left <= 135 && char.bounds().bottom >= 55) {
         collision = true;
       }
     });
@@ -147,6 +136,3 @@ class PokeBall {
 
 export default PokeBall;
 
-
-// {left: 50, right: 125, top: 186, bottom: 196}
-// char bounds 

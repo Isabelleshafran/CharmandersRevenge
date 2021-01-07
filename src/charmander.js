@@ -62,10 +62,6 @@ class Charmander {
     }
   }
 
-  flash() {
-    this.gameover = true;
-  }
-
   moveChar(level) {
     this.y += this.vel;
     this.vel = CONSTANTS.GRAVITY;
@@ -92,12 +88,11 @@ class Charmander {
     let flash = new Image();
     flash.src = "./images/flash.png"
 
-    // ctx.globalCompositeOperation='destination-over'
 
         ctx.drawImage(
           flash,
-          (this.x - 20),
-          (this.y),
+          (this.x - 75),
+          (this.y - 75),
           (CONSTANTS.CHAR_WIDTH * 2),
           (CONSTANTS.CHAR_HEIGHT * 2)
         );
@@ -105,8 +100,8 @@ class Charmander {
         flash.onload = () => {
           ctx.drawImage(
             flash,
-            this.x,
-            (this.y - 20),
+            (this.x - 75),
+            (this.y - 75),
             (CONSTANTS.CHAR_WIDTH * 2),
             (CONSTANTS.CHAR_HEIGHT * 2)
           );

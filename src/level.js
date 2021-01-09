@@ -54,7 +54,16 @@ class Level {
       
       if(this.grass[0].right <= 0) {
           this.grass.shift();
-          const newG = this.grass[1].left + CONSTANTS.GRASS_SPACING;
+          let newG;
+
+          if(score < 5){
+            newG = this.grass[1].left + CONSTANTS.GRASS_SPACING;
+          }
+
+          if(score >= 5 ){
+            newG = this.grass[1].left + 1100;
+          }
+
           this.grass.push(this.randomGrass(newG))
       }
   }

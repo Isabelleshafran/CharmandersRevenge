@@ -4,7 +4,7 @@ const CONSTANTS = {
   BALL_WIDTH: 95,
   BALL_HEIGHT: 95,
   EDGE_BUFFER: 50,
-  BALL_SPACING: 1000,
+  BALL_SPACING: 800,
   WARM_UP_SECONDS: 1,
 };
 
@@ -52,6 +52,7 @@ class PokeBall {
 
   moveBalls(score) {
     this.eachBall(function (ball) {
+
        if (score >= 2) {
          this.speed = 4.5;
        } 
@@ -65,9 +66,20 @@ class PokeBall {
       ball.right -= this.speed;
     });
 
+    // console.log(score)
+
+
     if (this.balls[0].right <= 0) {
       this.balls.shift();
-      const newB = this.balls[1].left + CONSTANTS.BALL_SPACING;
+      // console.log(score)
+      let newB;
+      if(score < 5){
+        newB = this.balls[1].left + CONSTANTS.BALL_SPACING;
+      }
+
+      if(score >= 5) {
+        newB = this.balls[1].left + 500;
+      }
       this.balls.push(this.randomBall(newB));
     }
   }

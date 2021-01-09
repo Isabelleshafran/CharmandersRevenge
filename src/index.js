@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById("pokemon-game");
     new CharmandersRevenge(canvas)
 
-
     const sound = document.getElementById('sound');
     const soundOn = document.getElementById('sound-on')
     const soundOff = document.getElementById('sound-off')
@@ -16,9 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     soundOff.addEventListener('click', () => {
-        sound.pause();
+        sound.pause();        
     })
 
-
-    
+  
 })

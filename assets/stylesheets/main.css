@@ -23,6 +23,10 @@ body {
     font-size: 25px;
 }
 
+.links:hover {
+    cursor: pointer;
+}
+
 .isabelle {
     margin-top: -28px;
 }

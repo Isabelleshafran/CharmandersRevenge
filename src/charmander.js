@@ -48,11 +48,14 @@ class Charmander {
   }
 
   dash() {
-    this.dashing = true;
-    let i = 50;
-    while (i < CONSTANTS.DASH_SPEED) {
-      this.x = i;
-      i += 1;
+    if(this.dashing === false) {
+      this.dashing = true;
+      let i = 50;
+  
+      while (i < CONSTANTS.DASH_SPEED) {
+        this.x = i;
+        i += 1;
+      }
     }
   }
 
@@ -150,21 +153,13 @@ class Charmander {
   }
 
   bounds() {
-    if (this.dashing === true) {
-      return {
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-      };
-    } else {
       return {
         left: this.x,
         right: this.x + CONSTANTS.CHAR_WIDTH,
         top: this.y,
         bottom: this.y,
       };
-    }
+
   }
 
   outOfBounds() {

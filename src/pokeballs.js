@@ -114,6 +114,11 @@ class PokeBall {
 
   collidesWith(char) {
     let collision = false;
+
+    if(char.dashing) {
+      return collision = false
+    }
+    
     this.eachBall((ball) => {
       if (ball.left >= 125 && ball.left <= 135 && char.bounds().bottom >= 55) {
         collision = true;

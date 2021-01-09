@@ -18,6 +18,7 @@ class CharmandersRevenge {
   }
 
   restart() {
+    document.addEventListener("keydown", this.boundClickHandler);
     this.running = false;
     this.score = 0;
     this.level = new Level(this.dimensions);
@@ -39,6 +40,7 @@ class CharmandersRevenge {
     }
   
     if (this.gameOver()) {
+      document.removeEventListener("keydown", this.boundClickHandler)
       this.charmander.drawFlash(this.ctx);
 
       this.drawGameOver();
@@ -79,6 +81,8 @@ class CharmandersRevenge {
       this.charmander.dash();
     }
   }
+
+  // controls(e)
 
   gameOver() {
     return (

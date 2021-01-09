@@ -62,14 +62,15 @@ class PokeBall {
        if(score > 9) {
          this.speed = 7
        }
-        if (score > 15) {
-          this.speed = 10;
-        }
+      
+       if (score > 15) {
+         this.speed = 8.5;
+       }
 
-        if (score > 15) {
-          this.speed = 11;
-        }
-        
+       if (score > 30) {
+         this.speed = 9.5;
+       }
+       
       ball.left -= this.speed;
       ball.right -= this.speed;
     });

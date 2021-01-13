@@ -67,9 +67,7 @@ class PokeBall {
          this.speed = 8.5;
        }
 
-       if (score > 30) {
-         this.speed = 9.5;
-       }
+  
        
       ball.left -= this.speed;
       ball.right -= this.speed;
@@ -95,7 +93,8 @@ class PokeBall {
 
   drawBalls(ctx, charmander) {
     this.eachBall(function (ball) {
-      if(ball.left > (charmander.x)) {  
+
+      if((ball.left - 100) > (charmander.x)) { 
           ctx.drawImage(
             this.pokeballPic,
             ball.left,

@@ -50,10 +50,6 @@ class Level {
          this.speed = 8.5
        }
 
-       if(score > 30) {
-         this.speed = 9.5
-       }
-
         grass.left -= this.speed
         grass.right -= this.speed
 

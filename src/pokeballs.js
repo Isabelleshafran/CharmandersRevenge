@@ -72,13 +72,9 @@ class PokeBall {
       ball.left -= this.speed;
       ball.right -= this.speed;
     });
-
-    // console.log(score)
-
-
+    
     if (this.balls[0].right <= 0) {
       this.balls.shift();
-      // console.log(score)
       let newB;
       if(score < 5){
         newB = this.balls[1].left + CONSTANTS.BALL_SPACING;

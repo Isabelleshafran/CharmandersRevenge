@@ -1,5 +1,7 @@
 # Welcome to Charmander's Revenge 
 
+Endless runner game built using JavaScript and HTML Canvas
+
 [Live Game](https://isabelleshafran.github.io/CharmandersRevenge/)
 
 ## Instructions 
